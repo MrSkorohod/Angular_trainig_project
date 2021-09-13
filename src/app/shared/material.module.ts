@@ -64,10 +64,10 @@ const modules = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  ];
+];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
-export class MaterialModule { }
+export class MaterialModule {}
