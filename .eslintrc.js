@@ -4,14 +4,12 @@ module.exports = {
     {
       files: ['*.ts'],
       parserOptions: {
-        project: ['tsconfig.*?.json', 'tsconfig.json'],
+        project: ['tsconfig.*?.json'],
         createDefaultProgram: true,
       },
       extends: [
         'plugin:@angular-eslint/recommended',
-        //'airbnb',
-        //'airbnb-typescript',
-        //'airbnb-typescript/base',
+        'airbnb-typescript/base',
         'prettier',
         'plugin:prettier/recommended',
       ],
