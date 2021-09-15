@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-trainig-project": {
+      "hosting": {
+        "trello-app": [
+          "angular-trainig-project"
+        ]
+      }
+    }
+  }
+}
