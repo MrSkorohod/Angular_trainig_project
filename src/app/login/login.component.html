@@ -1,53 +1,51 @@
 <div class="login-wrapper">
   <div class="login-box">
-    <mat-tab-group mat-align-tabs="center" (selectedIndexChange)="handleTabChange($event)">
+    <mat-tab-group
+      mat-align-tabs="center"
+      (selectedIndexChange)="handleTabChange($event)"
+    >
       <mat-tab label="Login"></mat-tab>
       <mat-tab label="Registration"></mat-tab>
     </mat-tab-group>
-    
+
     <form class="login-form" [formGroup]="form">
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your email</mat-label>
-          <input
-            matInput
-            placeholder="pat@example.com"
-            formControlName="email"
-          />
-          <mat-error *ngIf="emailInvalid">{{ errorEmailMessage }}</mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" formControlName="email" />
+        <mat-error *ngIf="emailInvalid">{{ errorEmailMessage }}</mat-error>
+      </mat-form-field>
 
-        <mat-form-field *ngIf="isRegistration" appearance="fill">
-            <mat-label>Enter your username</mat-label>
-            <input
-              matInput
-              formControlName="name"
-            />
-            <mat-error *ngIf="emailInvalid">{{ errorMessage }}</mat-error>
-          </mat-form-field>
+      <mat-form-field *ngIf="isRegistration" appearance="fill">
+        <mat-label>Enter your username</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="emailInvalid">{{ errorMessage }}</mat-error>
+      </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your password</mat-label>
-          <input
-            matInput
-            [type]="hide ? 'password' : 'text'"
-            formControlName="password"
-          />
-          <button
-            matSuffix
-            mat-icon-button
-            type="button"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide"
-            (click)="hide = !hide"
-          >
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="passwordInvalid">{{ errorMessage }}</mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          type="button"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          (click)="hide = !hide"
+        >
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordInvalid">{{ errorMessage }}</mat-error>
+      </mat-form-field>
 
-        <div class="login-form__buttons">
-          <button mat-stroked-button (click)="submit()">{{isRegistration ? "Registration" : "Login" }}</button>
-        </div>
-      </form>
+      <div class="login-form__buttons">
+        <button mat-stroked-button (click)="submit()">
+          {{isRegistration ? "Registration" : "Login" }}
+        </button>
+      </div>
+    </form>
   </div>
 </div>
