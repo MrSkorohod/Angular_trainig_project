@@ -1,0 +1,10 @@
+<header>
+  <p>
+    <mat-toolbar>
+      <span>Trello app</span>
+      <span class="spacer"></span>
+      <span>{{ currentUserName$ | async }}</span>
+      <button *ngIf="isAuthenticated$ | async" mat-stroked-button (click)="logOut()">Login Out</button>
+    </mat-toolbar>
+  </p>
+</header>
