@@ -2,18 +2,22 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+
+import { User } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private _isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
-  private _currentUser$!: Observable<any>;
+  private _currentUser$ = new BehaviorSubject<User | undefined>(undefined);
   private _currentUserId!: string;
+  private _destroySubject = new Subject<void>();
 
-  isAuthenticated$ = this._isAuthenticated$.asObservable();
+  isAuthenticated$ = this._isAuthenticated$.asObservable().pipe(distinctUntilChanged());
+  currentUser$ = this._currentUser$.asObservable();
 
   constructor(private _authService: AngularFireAuth, private _firestore: AngularFirestore) {
     this.checkIsAuth();
@@ -54,16 +58,20 @@ export class AuthService {
 
   signOut(): void {
     this._authService.signOut();
-    // clear user
+    this._currentUser$.next(undefined);
+    this._destroySubject.next();
+    localStorage.clear();
     this._isAuthenticated$.next(false);
   }
 
   getUser(): void {
     if (!this._currentUserId) return;
-    this._currentUser$ = this._firestore.doc<any>(`users/${this._currentUserId}`).valueChanges();
-    this._currentUser$.pipe(take(1)).subscribe(user => {
+    
+    const user$ = this._firestore.doc<User>(`users/${this._currentUserId}`).valueChanges() as Observable<User>;
+    user$.pipe(takeUntil(this._destroySubject)).subscribe(user => {
       this._isAuthenticated$.next(!!user);
-    })
+      this._currentUser$.next(user);
+    });
   }
 
   setUserToLocalStorage(): void {
