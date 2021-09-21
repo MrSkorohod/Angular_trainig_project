@@ -46,7 +46,7 @@
         </mat-form-field>
 
         <div class="login-form__buttons">
-          <button mat-stroked-button>{{isRegistration ? "Registration" : "Login" }}</button>
+          <button mat-stroked-button (click)="submit()">{{isRegistration ? "Registration" : "Login" }}</button>
         </div>
       </form>
   </div>

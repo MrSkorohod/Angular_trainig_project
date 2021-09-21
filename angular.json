@@ -120,6 +120,7 @@
   },
   "defaultProject": "trello-app",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@angular-eslint/schematics"
   }
 }

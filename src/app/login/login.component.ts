@@ -4,6 +4,8 @@ import {
   FormGroup,
   Validators 
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
 
 import { requiredError, invalidEmailError} from './login.constants';
 
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor( ) { }
+  constructor(private _authService: AuthService, private _router: Router ) { }
 
   get errorEmailMessage(): string {
     if (this.email.hasError('email')) {
@@ -52,6 +54,22 @@ export class LoginComponent implements OnInit {
   handleTabChange(tabIndex: number): void {
     this.isRegistration = tabIndex !== 0;
     this.initForm();
+  }
+
+  async submit(): Promise<void> {
+    try {
+      if (this.isRegistration) {
+        const { email, password, name } = this.form.value;
+        await this._authService.signUpByEmailAndPassword(email, password, name);
+      } else {
+        const { email, password } = this.form.value;
+        await this._authService.signInByEmailAndPssword(email, password);
+      }
+
+      this._router.navigateByUrl('');
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   ngOnInit(): void {
