@@ -1,21 +1,24 @@
 .board {
   width: 320px;
   margin-bottom: 16px;
-  height: 140px;
+  
+  &-title {
+    margin: 20px;
+  }
 }
+
 mat-card {
   height: 140px;
-  
+
   &-header {
     justify-content: space-between;
   }
 }
-.board-title {
-  margin: 20px;
-}
+
 .mat-card {
   padding: 4px;
 }
+
 .board-description {
   padding: 28px 38px;
 }
