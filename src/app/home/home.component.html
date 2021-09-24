@@ -1,0 +1,10 @@
+<div class="home-page">
+  <h2>Owner Boards</h2>
+  <div class="owner-boards">
+    <ng-container *ngFor="let board of (boards$ | async); trackBy: trackById">
+      <app-owner-board [board]="board"></app-owner-board>
+    </ng-container>
+  </div>
+  <h2>Other People's Boards</h2>
+  <div class="other-boards"></div>
+</div>
