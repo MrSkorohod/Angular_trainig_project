@@ -1,0 +1,25 @@
+.board {
+  width: 320px;
+  display: block;
+}
+.addPoint {
+  text-align: center;
+
+  &-control {
+      margin-top: 15px;
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+  }
+  
+  &-description {
+      margin-top: 16px;
+    text-align: center;
+  }
+}
+mat-card {
+  height: 140px;
+}
+.mat-card {
+  padding: 4px;
+}

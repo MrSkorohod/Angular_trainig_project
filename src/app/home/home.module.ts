@@ -6,12 +6,14 @@ import { HomeComponent } from './home.component';
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { OwnerBoardComponent } from './owner-board/owner-board.component';
+import { AddBoardComponent } from './add-board/add-board.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    OwnerBoardComponent
+    OwnerBoardComponent,
+    AddBoardComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Board } from '@app/core/models';
+import { BoardsService } from '@app/core/services';
 
 @Component({
   selector: 'app-owner-board',
@@ -10,7 +11,11 @@ import { Board } from '@app/core/models';
 export class OwnerBoardComponent implements OnInit {
   @Input() board!: Board;
 
-  constructor() { }
+  constructor(private _boardService: BoardsService) { }
 
   ngOnInit(): void {}
+
+  deleteBoard(id: string): Promise<void> {
+    return this._boardService.deleteBoard(this.board.id);
+  }
 }
