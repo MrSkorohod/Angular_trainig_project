@@ -43,4 +43,8 @@ export class FirestoreUtilsService {
     const id = (await this._firestore.collection(path).add(data)).id;
     return id;
   }
+
+  async updateDoc<T>(path: string, data: T): Promise<void> {
+    await this._firestore.doc<T>(path).update(data);
+  }
 }
