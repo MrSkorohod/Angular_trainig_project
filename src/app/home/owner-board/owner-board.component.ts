@@ -1,13 +1,13 @@
-import { FormGroup, FormControl } from "@angular/forms";
-import { Component, Input, OnInit } from "@angular/core";
+import { FormGroup, FormControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { Board } from "@app/core/models";
-import { BoardsService } from "@app/core/services";
+import { Board } from '@app/core/models';
+import { BoardsService } from '@app/core/services';
 
 @Component({
-  selector: "app-owner-board",
-  templateUrl: "./owner-board.component.html",
-  styleUrls: ["./owner-board.component.scss"],
+  selector: 'app-owner-board',
+  templateUrl: './owner-board.component.html',
+  styleUrls: ['./owner-board.component.scss'],
 })
 export class OwnerBoardComponent implements OnInit {
   @Input() board!: Board;
@@ -22,8 +22,8 @@ export class OwnerBoardComponent implements OnInit {
 
   private initForm(): void {
     const formGroup = new FormGroup({
-      title: new FormControl(""),
-      description: new FormControl(""),
+      title: new FormControl(''),
+      description: new FormControl(''),
     });
 
     this.form = formGroup;

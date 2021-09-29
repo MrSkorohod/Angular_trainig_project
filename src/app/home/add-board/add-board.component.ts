@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { BoardsService } from "@app/core/services";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { BoardsService } from '@app/core/services';
 
 @Component({
-  selector: "app-add-board",
-  templateUrl: "./add-board.component.html",
-  styleUrls: ["./add-board.component.scss"],
+  selector: 'app-add-board',
+  templateUrl: './add-board.component.html',
+  styleUrls: ['./add-board.component.scss'],
 })
 export class AddBoardComponent implements OnInit {
   form!: FormGroup;
@@ -31,8 +31,8 @@ export class AddBoardComponent implements OnInit {
 
   private initForm(): void {
     const formGroup = new FormGroup({
-      title: new FormControl(""),
-      description: new FormControl(""),
+      title: new FormControl(''),
+      description: new FormControl(''),
     });
 
     this.form = formGroup;
