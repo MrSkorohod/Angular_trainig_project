@@ -1,9 +1,25 @@
 .board {
   width: 320px;
   margin-bottom: 16px;
+  margin-left: 12px;
 
   &-title {
     margin: 20px;
+  }
+
+  &__form {
+    display: flex;
+  }
+
+  &__inputs {
+    padding-top: 10px;
+    margin-left: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 }
 

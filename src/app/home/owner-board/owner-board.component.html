@@ -1,15 +1,15 @@
 <div class="board">
-  <mat-card>
+  <mat-card *ngIf="edit">
     <mat-card-header>
       <div class="button-menu">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="edit = !edit">
             <span>Edit</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="deleteBoard()">
             <span>Delete</span>
           </button>
         </mat-menu>
@@ -20,5 +20,29 @@
     <mat-card-content class="board-description">
       {{ board.description }}
     </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="!edit">
+    <form [formGroup]="form" class="board__form">
+      <div class="board__inputs">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" />
+        </mat-form-field>
+      </div>
+      <div class="board__buttons">
+        <button mat-stroked-button (click)="updateBoard()">Save</button>
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
   </mat-card>
 </div>

@@ -4,6 +4,7 @@
     <ng-container *ngFor="let board of (boards$ | async); trackBy: trackById">
       <app-owner-board [board]="board"></app-owner-board>
     </ng-container>
+    <app-add-board></app-add-board>
   </div>
   <h2>Other People's Boards</h2>
   <div class="other-boards"></div>

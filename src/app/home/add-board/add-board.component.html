@@ -1,0 +1,32 @@
+<div class="board add-board">
+  <mat-card *ngIf="substitution" (click)="substitution = !substitution">
+    <div class="addPoint">
+      <mat-icon class="addPoint-control">control_point</mat-icon>
+    </div>
+    <p class="addPoint-description">Add new board</p>
+  </mat-card>
+
+  <mat-card *ngIf="!substitution">
+    <form [formGroup]="form" class="add-board__form">
+      <div class="add-board__inputs">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" />
+        </mat-form-field>
+      </div>
+      <div class="add-board__buttons">
+        <button mat-stroked-button (click)="addBoard()">Add</button>
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

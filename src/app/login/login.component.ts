@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
   handleTabChange(tabIndex: number): void {
     this.isRegistration = tabIndex !== 0;
-    this.initForm();
+    this._initForm();
   }
 
   async submit(): Promise<void> {
@@ -73,10 +73,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initForm();
+    this._initForm();
   }
 
-  private initForm(): void {
+  private _initForm(): void {
     const formGroup = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),

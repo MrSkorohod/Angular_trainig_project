@@ -23,6 +23,10 @@ export class AuthService {
     this.checkIsAuth();
   }
 
+  get currentUserId(): string {
+    return this._currentUserId;
+  }
+
   checkIsAuth(): void {
     this._authService.onAuthStateChanged((user) => {
       this._isAuthenticated$.next(!!user);
