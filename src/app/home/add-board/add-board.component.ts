@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+
 import { BoardsService } from '@app/core/services';
 
 @Component({
@@ -9,7 +10,6 @@ import { BoardsService } from '@app/core/services';
 })
 export class AddBoardComponent implements OnInit {
   form!: FormGroup;
-
   substitution: boolean = true;
 
   constructor(private _boardService: BoardsService) {}
@@ -24,6 +24,11 @@ export class AddBoardComponent implements OnInit {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  cancel(): void {
+    this.substitution = true;
+    this._initForm();
   }
 
   ngOnInit(): void {

@@ -21,10 +21,15 @@ export class OwnerBoardComponent implements OnInit {
     this._initForm();
   }
 
-
   deleteBoard(): Promise<void> {
     return this._boardService.deleteBoard(this.board.id);
   }
+
+  cancel(): void {
+    this.edit = true;
+    this._initForm();
+  }
+
 
   async updateBoard(): Promise<void> {
     try {
@@ -37,7 +42,6 @@ export class OwnerBoardComponent implements OnInit {
       console.log(e);
     }
   }
-
   
   private _initForm(): void {
     const formGroup = new FormGroup({
