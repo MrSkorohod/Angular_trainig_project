@@ -9,7 +9,7 @@
           <button mat-menu-item (click)="edit = !edit">
             <span>Edit</span>
           </button>
-          <button mat-menu-item (click)="deleteBoard(board.id)">
+          <button mat-menu-item (click)="deleteBoard()">
             <span>Delete</span>
           </button>
         </mat-menu>
@@ -25,17 +25,17 @@
   <mat-card *ngIf="!edit">
     <form [formGroup]="form" class="board__form">
       <div class="board__inputs">
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Title</mat-label>
           <input matInput formControlName="title" />
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Description</mat-label>
           <input matInput formControlName="description" />
         </mat-form-field>
       </div>
       <div class="board__buttons">
-        <button mat-stroked-button (click)="updateBoard(board.id)">Save</button>
+        <button mat-stroked-button (click)="updateBoard()">Save</button>
         <button
           mat-stroked-button
           type="button"

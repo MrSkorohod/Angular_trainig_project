@@ -1,11 +1,10 @@
-import { SpinnerService } from './spinner.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
-
-import { Board } from '../models';
-import { AuthService } from './auth.service';
 import { FirestoreUtilsService } from './firestore-utils.service';
+import { AuthService } from './auth.service';
+import { SpinnerService } from './spinner.service';
+import { Board } from '../models';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -15,15 +14,15 @@ export class BoardsService extends FirestoreUtilsService {
   constructor(
     _firestore: AngularFirestore,
     private _authService: AuthService,
-    private spinner: SpinnerService
+    private _spinner: SpinnerService
   ) {
     super(_firestore);
   }
 
   getBoards(): Observable<Board[]> {
-    this.spinner.show();
+    this._spinner.show();
     return this.getCollection<Board>('boards').pipe(
-      tap((res) => this.spinner.hide())
+      tap((res) => this._spinner.hide())
     );
   }
 

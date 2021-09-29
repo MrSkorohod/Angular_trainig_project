@@ -11,32 +11,40 @@ import { BoardsService } from '@app/core/services';
 })
 export class OwnerBoardComponent implements OnInit {
   @Input() board!: Board;
+  
   edit: boolean = true;
   form!: FormGroup;
 
   constructor(private _boardService: BoardsService) {}
 
   ngOnInit(): void {
-    this.initForm();
+    this._initForm();
   }
 
-  private initForm(): void {
+
+  deleteBoard(): Promise<void> {
+    return this._boardService.deleteBoard(this.board.id);
+  }
+
+  async updateBoard(): Promise<void> {
+    try {
+      const { title, description } = this.form.value;
+      await this._boardService.updateBoard(this.board.id, title, description);
+      
+      this.edit = true;
+      this._initForm();
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  
+  private _initForm(): void {
     const formGroup = new FormGroup({
       title: new FormControl(''),
       description: new FormControl(''),
     });
 
     this.form = formGroup;
-  }
-
-  deleteBoard(id: string): Promise<void> {
-    return this._boardService.deleteBoard(this.board.id);
-  }
-
-  async updateBoard(id: string) {
-    const { title, description } = this.form.value;
-    await this._boardService.updateBoard(this.board.id, title, description);
-    this.edit = !this.edit;
-    this.initForm();
   }
 }

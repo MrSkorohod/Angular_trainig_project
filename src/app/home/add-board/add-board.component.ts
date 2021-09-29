@@ -18,18 +18,19 @@ export class AddBoardComponent implements OnInit {
     try {
       const { title, description } = this.form.value;
       await this._boardService.addBoard(title, description);
-      this.substitution = !this.substitution;
-      this.initForm();
+
+      this.substitution = true;
+      this._initForm();
     } catch (e) {
       console.error(e);
     }
   }
 
   ngOnInit(): void {
-    this.initForm();
+    this._initForm();
   }
 
-  private initForm(): void {
+  private _initForm(): void {
     const formGroup = new FormGroup({
       title: new FormControl(''),
       description: new FormControl(''),

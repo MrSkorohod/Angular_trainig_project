@@ -9,19 +9,19 @@
     </mat-tab-group>
 
     <form class="login-form" [formGroup]="form">
-      <mat-form-field appearance="fill">
+      <mat-form-field>
         <mat-label>Enter your email</mat-label>
         <input matInput placeholder="pat@example.com" formControlName="email" />
         <mat-error *ngIf="emailInvalid">{{ errorEmailMessage }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field *ngIf="isRegistration" appearance="fill">
+      <mat-form-field *ngIf="isRegistration">
         <mat-label>Enter your username</mat-label>
         <input matInput formControlName="name" />
         <mat-error *ngIf="emailInvalid">{{ errorMessage }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field>
         <mat-label>Enter your password</mat-label>
         <input
           matInput
