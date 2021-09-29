@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+
 import { FirestoreUtilsService } from './firestore-utils.service';
 import { AuthService } from './auth.service';
 import { SpinnerService } from './spinner.service';
 import { Board } from '../models';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +22,11 @@ export class BoardsService extends FirestoreUtilsService {
 
   getBoards(): Observable<Board[]> {
     this._spinner.show();
-    return this.getCollection<Board>('boards').pipe(
-      tap((res) => this._spinner.hide())
-    );
+    const boards$ = this.getCollection<Board>('boards');
+    boards$
+      .pipe(take(1))
+      .subscribe(() => this._spinner.hide());
+    return boards$;
   }
 
   deleteBoard(id: string): Promise<void> {
@@ -40,7 +43,7 @@ export class BoardsService extends FirestoreUtilsService {
     return this.addDoc<Board>('boards', board as Board);
   }
 
-  updateBoard(id: string, title: string, description: string) {
+  updateBoard(id: string, title: string, description: string): Promise<void> {
     const data = {
       title,
       description,

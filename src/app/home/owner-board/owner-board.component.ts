@@ -30,7 +30,6 @@ export class OwnerBoardComponent implements OnInit {
     this._initForm();
   }
 
-
   async updateBoard(): Promise<void> {
     try {
       const { title, description } = this.form.value;
