@@ -44,8 +44,8 @@ export class OwnerBoardComponent implements OnInit {
   
   private _initForm(): void {
     const formGroup = new FormGroup({
-      title: new FormControl(`${this.board.title}`),
-      description: new FormControl(`${this.board.description}`),
+      title: new FormControl(this.board.title),
+      description: new FormControl(this.board.description),
     });
 
     this.form = formGroup;
